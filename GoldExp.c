@@ -30,9 +30,25 @@ void convertExpToGold(Knight *knight) {
 
     printf("\nHow much experience would you like to convert to gold?");
     printf("\nEnter amount (minimum of 500 exp): ");
+    char input[20];
     int expToConvert;
-    scanf("%d", &expToConvert);
-    getchar();  
+
+     fgets(input, sizeof(input), stdin);
+
+    // Check if the input contains only digits (use ASCII values)
+    int i = 0;
+    while (input[i] != '\0' && input[i] != '\n') {
+        if (input[i] < '0' || input[i] > '9') {
+            printf(RED"\nAmount must be a numeric value!"RESET);
+            printf("\n\nPress Enter to continue...");
+            getchar();
+            return;
+        }
+        i++;
+    }
+
+    // Convert the valid input to an integer
+    sscanf(input, "%d", &expToConvert);
 
     if (expToConvert % MIN_CONVERSION_EXP != 0) {
         printf(RED"\nAmount must be a multiple of 500 EXP."RESET);

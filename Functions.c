@@ -71,8 +71,7 @@ Knight *findParent(Knight *current, Knight *child) {
     return findParent(current->rightSub, child);
 }
 
-void saveKingdom() 
-{
+void saveKingdom() {
     FILE *file = fopen("KINGDOM.txt", "w");
     if (file == NULL) {
         printf(RED"\n\n===\nFailed to record the kingdom's history in the scrolls."RESET);
@@ -96,6 +95,15 @@ void updateKnightRole(Knight *knight) {
 void recruit(Knight *leader, char *recName, char *recRole) 
 {
     clearScreen();
+
+    for (int i = 0; recName[i] != '\0'; i++) {
+        if (!isalpha(recName[i])) {
+            printf(RED"\n\n===\nMy liege, the name must contain only alphabetic characters!"RESET);
+            printf("\nPress Enter to continue...");
+            getchar();
+            return;
+        }
+    }
 
     if (leader->gold < RECRUITMENT_COST) {
         printf(RED"\n\n===\nMy liege, I am afraid your treasury is not enough to earn a brave soul."RESET);
