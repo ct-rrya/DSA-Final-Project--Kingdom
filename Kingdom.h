@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h> 
+#include <ctype.h> // For isalpha()
 #ifdef _WIN32
 #include <windows.h>
 #define CLEAR "cls"
