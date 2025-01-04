@@ -1,0 +1,13 @@
+# Ignore compiled files
+*.exe
+*.out
+*.o
+*.a
+
+# Ignore logs
+*.log
+
+# Ignore IDE and OS specific files
+.vscode/
+*.swp
+Thumbs.db
