@@ -188,7 +188,7 @@ void displayHelp() {
 
     printf("\n====================================================================================\n"RESET);
     printf(BLUE"================================ PROJECT CONTRIBUTORS ================================\n\n");
-    printf("GROUP: 4\t\t\t PROGRAM & SECTION: BSIT 2A\n\n");
+    printf("GROUP: 4\nPROGRAM & SECTION: BSIT 2A\n\n");
     printf("\t\t\tCabardo, Carmela\n");
     printf("\t\t\tConde, Jhemarsh Lee\n");
     printf("\t\t\tCongson, Jovannie\n");
