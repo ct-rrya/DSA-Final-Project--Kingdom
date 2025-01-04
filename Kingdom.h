@@ -37,27 +37,37 @@ typedef struct Knight {
     struct Knight *rightSub;
 } Knight;
 
-Knight *createNew(char *name, char *role);
-Knight *findMember(Knight *current, char *name);
-Knight *findParent(Knight *current, Knight *child);
-void updateKnightRole(Knight *knight);
-void saveTree(FILE *file, Knight *sub, int level);
-Knight *loadTree(FILE *file);
-void freeKnight(Knight *knight);
-void saveKingdom();
-void demolishKingdom();
-void showIntroduction();
-void typeText(const char *text, int delay);
-void displayBanner();
-void clearScreen();
-void recruit(Knight *leader, char *recName, char *recRole);
-void exileKnight(Knight *root, char *name);
-void displayKingdom(Knight *target, int level);
-void displaySubordinates(Knight *sub);
-void displayHelp();
-int computeTotalGold(Knight *sub);
-void convertExpToGold(Knight *knight);
+// MAIN FUNCTIONS encoded on Main_Features.c
+    void saveKingdom();
+    void demolishKingdom();
+    void recruit(Knight *leader, char *recName, char *recRole);
+    void exileKnight(Knight *root, char *name);
+    void displayKingdom(Knight *target, int level);
+    void displaySubordinates(Knight *sub);
+    void displayHelp();
 
+// HELPER FUNCTIONS encoded on Helper_Functions
+    Knight *createNew(char *name, char *role);
+    Knight *findMember(Knight *current, char *name);
+    Knight *findParent(Knight *current, Knight *child);
+    void freeKnight(Knight *knight);
+    void updateKnightRole(Knight *knight);
+
+// FILE HANDLING RELATED FUNCTIONS encoded on Files.c
+    void saveTree(FILE *file, Knight *sub, int level);
+    Knight *loadTree(FILE *file);
+
+// GOLD AND EXPERIENCE UPDATE FUNCTIONS encoded on GoldExp.c
+    int computeTotalGold(Knight *sub);
+    void convertExpToGold(Knight *knight);
+    
+// INTERFACE DESIGN FUNCTIONS encoded on Design.c
+    void showIntroduction();
+    void typeText(const char *text, int delay);
+    void displayBanner();
+    void clearScreen();
+
+// the global variable, to be initialized on main.c
 extern Knight *kingdomRoot;
 
 #endif
