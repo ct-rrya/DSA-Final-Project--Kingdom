@@ -48,14 +48,14 @@ int main()
     {
         displayBanner();
         printf("\nWhat actions shall you take, my liege?\n\n");
-        printf("1. Recruit a new knight to our cause\n");
-        printf("2. Inspect a knight's status\n");
-        printf("3. View the entire kingdom's hierarchy\n");
-        printf("4. Exile a knight\n");
-        printf("5. Convert experience to gold\n");
-        printf("6. Save the kingdom's records and retire\n");
-        printf("7. Demolish kingdom\n");
-        printf("8. Program Guide\n\n");
+        printf("\t1. Recruit a new knight to our cause\n");
+        printf("\t2. Inspect a knight's status\n");
+        printf("\t3. View the entire kingdom's hierarchy\n");
+        printf("\t4. Exile a knight\n");
+        printf("\t5. Convert experience to gold\n");
+        printf("\t6. Save the kingdom's records and retire\n");
+        printf("\t7. Demolish kingdom\n");
+        printf("\t8. Program Guide\n\n");
         
         printf("Your command: ");
         int choice;
