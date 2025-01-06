@@ -28,7 +28,7 @@ int main()
     kingdomRoot = createNew(kingName, "King");
     strcpy(kingdomRoot->role, "King");
     kingdomRoot->gold = 100;
-    kingdomRoot->exp = 1000;  
+    kingdomRoot->exp = 5000;  
 
 
     printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
