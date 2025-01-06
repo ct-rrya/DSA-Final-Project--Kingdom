@@ -25,9 +25,11 @@ int main()
     kingdomRoot = createNew(kingName, "King");
     kingdomRoot->gold = 100; 
 
-    printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
+    printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n"RESET);
     printf("\nAll hail the Sir %s, the ruler of Eldoria!", kingName);
     printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
+
+    saveKingdom();
     sleep(2);
 
     } 
