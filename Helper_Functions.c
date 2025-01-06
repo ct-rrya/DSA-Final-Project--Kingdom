@@ -91,7 +91,7 @@ void updateKnightRole(Knight *knight) { // to promote  aknight aheheh
     }
     */
 
-    if (strcmp(knight->role, "King") == 0) {
+    if (strcmp(knight->name, kingdomRoot->name) == 0) {
         return;  // Don't promote the king
     }
 
