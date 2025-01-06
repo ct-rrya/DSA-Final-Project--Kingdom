@@ -103,6 +103,7 @@ void convertExpToGold(Knight *knight) {
     printf("\nGold: %d"RESET, knight->gold);
 
     updateKnightRole(knight);
+    saveKingdom();
 
     printf(GOLD"\n+------------------------------------------------------------------------------------------+\n\n"RESET);
     printf("\nPress Enter to continue...");

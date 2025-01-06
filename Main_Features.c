@@ -310,29 +310,6 @@ void displaySubordinates(Knight *sub)
     }
 }
 
-/*
-void displayKingdom(Knight *target, int level) 
-{
-    //Uses pre-order traversal: Current → Left → Right.
-    if (target == NULL) return;
-
-
-    // Print the details of the current knight with appropriate indentation.
-    // indentation
-    for (int i = 0; i < level; i++) {
-        printf("   "); 
-    }
-
-    // details of current knight
-    printf("%s (%d gold, %d exp, %s)\n", target->name, target->gold, target->exp, target->role);
-
-    displayKingdom(target->leftSub, level + 1);
-    displayKingdom(target->rightSub, level + 1);
-
-    // para estitik ang pagka display, na siya hierarchical visualization
-}
-*/
-
 void displayKingdom(Knight *target, int level) 
 {
     // Uses pre-order traversal: Current → Left → Right.

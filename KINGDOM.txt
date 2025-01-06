@@ -1,1 +1,8 @@
-Art 100 1000 King
+Art 200 11000 King
+   A 200 6500 Elite Knight
+      C 0 1000 Knight
+      D 100 1500 Knight
+         I 0 1000 Knight
+   B 300 2000 Veteran Knight
+      E 0 1000 Knight
+      F 0 1000 Knight
