@@ -2,16 +2,18 @@
 
 Knight *createNew(char *name, char *role) 
 {
-    Knight *newSub = (Knight *)malloc(sizeof(Knight));
-    if (newSub == NULL) {
+    // himo ug new knight
+    Knight *newSub = (Knight *)malloc(sizeof(Knight)); // allocate memory
+    if (newSub == NULL) { // check if na allocate ba sha
         typeText(RED"\nThe kingdom's resources are stretched thin. Unable to accommodate new recruits."RESET, 30);
         return NULL;
     }
 
+    // tas initialize na
     strcpy(newSub->name, name);
     strcpy(newSub->role, role);
     newSub->gold = 0;
-    newSub->exp = 1000;
+    newSub->exp = 1000; // every knight, after sila ma recruit, naa na sla daan 1000 exp, kay need man nila gold to be able to recruit their own knight
     newSub->leftSub = NULL;
     newSub->rightSub = NULL;
 
@@ -71,17 +73,24 @@ Knight *findParent(Knight *current, Knight *child) {
     return findParent(current->rightSub, child);
 }
 
-void freeKnight(Knight *knight) {
+void freeKnight(Knight *knight) { // tp free alocated memory, to avoid memory leaks
     if (knight == NULL) return;
     freeKnight(knight->leftSub);
     freeKnight(knight->rightSub);
     free(knight);
 }
 
-void updateKnightRole(Knight *knight) {
+void updateKnightRole(Knight *knight) { // to promote  aknight aheheh
+    /*
     if (knight->exp >= KING_EXP_THRESHOLD) {
         strcpy(knight->role, "King");
     } else if (knight->exp >= ELITE_EXP_THRESHOLD) {
+        strcpy(knight->role, "Elite Knight");
+    } else if (knight->exp >= VETERAN_EXP_THRESHOLD) {
+        strcpy(knight->role, "Veteran Knight");
+    }
+    */
+    if (knight->exp >= ELITE_EXP_THRESHOLD) {
         strcpy(knight->role, "Elite Knight");
     } else if (knight->exp >= VETERAN_EXP_THRESHOLD) {
         strcpy(knight->role, "Veteran Knight");

@@ -1,3 +1,0 @@
-Art 200 3000 Elite Knight
-   A 0 1000 Knight
-   B 0 1000 Knight

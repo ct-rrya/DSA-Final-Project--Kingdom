@@ -7,12 +7,12 @@ void clearScreen()
 
 void typeText(const char* text, int delay_ms) 
 {
-    for (int i = 0; text[i] != '\0'; i++) {
-        printf("%c", text[i]);
-        fflush(stdout);
+    for (int i = 0; text[i] != '\0'; i++) { //loops thru eac charactr in the text string, stops at the character \0 or theblank
+        printf("%c", text[i]); // prints the text, character by character
+        fflush(stdout); // makes sure nga mo show dayun sha
         
         #ifdef _WIN32
-            Sleep(delay_ms);  
+            Sleep(delay_ms); // pause siya, in milliseconds na
         #else
             usleep(delay_ms * 1000); 
         #endif
@@ -21,6 +21,7 @@ void typeText(const char* text, int delay_ms)
 
 void displayBanner() 
 {
+    // simply printing the banner, for estetik purposes
     clearScreen();
     printf(BOLD_ON"\n");
     printf(GOLD"\n+------------------------------------------------------------------------------------------+\n");
@@ -30,7 +31,9 @@ void displayBanner()
     printf("+------------------------------------------------------------------------------------------+\n"RESET, OFF);
 }
 
-void showIntroduction() {
+void showIntroduction() 
+{
+    // for narration purposes, pang stetik ra sad para di boring
     displayBanner();
     printf("\n\n"ITALIC_ON);
     typeText(ITALIC_ON"In the realm of eternal glory, where heroes are forged and kingdoms rise and fall...", 30);

@@ -1,20 +1,22 @@
 #include "Kingdom.h"
 
-void saveKingdom() {
-    FILE *file = fopen("KINGDOM.txt", "w");
-    if (file == NULL) {
+void saveKingdom() { // saving the current state of the kingdom padung sa text file
+    FILE *file = fopen("KINGDOM.txt", "w"); // open ang file thru write mode (w)
+    if (file == NULL) { // kung mag file awww
         printf(RED"\n\n===\nFailed to record the kingdom's history in the scrolls."RESET);
         return;
     }
+    // 0 kay starting level ofc, start gyud tas root
     saveTree(file, kingdomRoot, 0); 
-    fclose(file);
-    sleep(1);
+    fclose(file); // tas close balik file
+    sleep(2);
 }
 
 void recruit(Knight *leader, char *recName, char *recRole) 
 {
     clearScreen();
 
+    // input validation, basin number or other character ang gityoe nga recName
     for (int i = 0; recName[i] != '\0'; i++) {
         if (!isalpha(recName[i])) {
             printf(RED"\n\n===\nMy liege, the name must contain only alphabetic characters!"RESET);
@@ -24,17 +26,20 @@ void recruit(Knight *leader, char *recName, char *recRole)
         }
     }
 
+     // check if naa ba na nga leader sa file
+    if (leader == NULL) {
+        printf(RED"\n\n===\nMy liege, I regret to inform you that this leader cannot be found in our ranks."RESET);
+        return;
+    }
+
+    // check if ang gold sa leader kay enought o recruit hahahaha
     if (leader->gold < RECRUITMENT_COST) {
         printf(RED"\n\n===\nMy liege, I am afraid your treasury is not enough to earn a brave soul."RESET);
         sleep(2);
         return;
     }
 
-    if (leader == NULL) {
-        printf(RED"\n\n===\nMy liege, I regret to inform you that this leader cannot be found in our ranks."RESET);
-        return;
-    }
-
+    // check if naa na bay in ana nga name, di sha llowed okay
     if (findMember(kingdomRoot, recName) != NULL) {
         printf(RED"\n\n===\nA member with this name already exists in the kingdom."RESET);
         sleep(2);
@@ -45,22 +50,24 @@ void recruit(Knight *leader, char *recName, char *recRole)
     printf(ITALIC_ON"\nIn the grand halls of %s's command post..."OFF, leader->name);
     typeText(story, 30);
 
+    // tas if oks na, create na tag newKnight
     Knight *newKnight = createNew(recName, recRole);
     if (newKnight == NULL) return; 
 
+    // check ang left side sa leader if na aba tawo
     if (leader->leftSub == NULL) 
     {
         printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n"RESET);
         printf(ITALIC_ON "\n\tA steadfast warrior steps forth, their armor gleaming faintly under the torchlight.\n");
         printf("The hall falls silent as the warrior kneels, ledging their blade and loyalty to the realm.");
-        leader->leftSub = newKnight; // as left knight
-        leader->gold -= RECRUITMENT_COST;
-        leader->gold += 100;
-        updateKnightRole(leader);
+        leader->leftSub = newKnight; // assign as left knight
+        leader->gold -= RECRUITMENT_COST; // minusan ang gold saleader
+        leader->gold += 100; // tas addan nasad 100 ang leader HAHAHAHHAH, di magbuot sa developer
+        updateKnightRole(leader); // tas update ang role niya
         sprintf(story, BOLD_ON BLUE "\n\n\tWith a solemn nod, %s proclaims, 'By royal decree, I name thee, %s, my sworn \nleft knight. Rise and serve with honor!'\n" OFF RESET, leader->name, recName);
         saveKingdom();
     } 
-    else if (leader->rightSub == NULL) 
+    else if (leader->rightSub == NULL)  // if ang right naay vacant position, cmpri ari ibutang ang new knight
     {
         printf(GOLD"\n\n+---------------------------------------------------------------------------------------+\n"RESET);
         printf(ITALIC_ON "\n\tFrom the shadows of the hall, a determined warrior steps forward, their cloak \nbillowing with the draft of ancient stone walls. ");
@@ -72,7 +79,7 @@ void recruit(Knight *leader, char *recName, char *recRole)
         sprintf(story, BOLD_ON BLUE "\n\n\tRaising a hand in declaration, %s proclaims, 'By royal decree, I name thee, %s, \nmy sworn right knight. Bear the crest of this kingdom with pride and valor!'\n" OFF RESET, leader->name, recName);
         saveKingdom();
     } 
-    else 
+    else // kung parehong occupied... awts
     {
     printf(RED "\n\tAlas! The ranks beneath this noble leader are already brimming with steadfast \nand loyal knights, each sworn to their sacred duty." RESET);
     free(newKnight);
@@ -80,6 +87,7 @@ void recruit(Knight *leader, char *recName, char *recRole)
         return;
     }
     
+    // para i update ang exp ug role
     Knight *current = leader;
     while (current != NULL) {
         current->exp += 1000;
@@ -99,18 +107,23 @@ void recruit(Knight *leader, char *recName, char *recRole)
 }
 
 void exileKnight(Knight *root, char *name) 
-{
+{   
+    // check if ang gi enter nga name kay maoy root / king, u cannot exile a king ok
     if (root == NULL || strcmp(root->name, name) == 0) {
         printf(RED"Cannot exile the king or the root of the kingdom.\n"RESET);
         return;
     }
 
+    // pangitaon nag name nga gitype, if walla haynaq
     Knight *knightToExile = findMember(root, name);
     if (knightToExile == NULL) {
         printf(RED"No knight with the name %s found in the kingdom.\n"RESET, name);
         return;
     }
 
+
+    // if makita na, naay warning
+    // kay if u exile that knight, mawala sad to iyang mga subordinates
     printf("Warning: Exiling knight %s will also remove all its subordinates.\n", name);
     printf("Do you want to proceed? (yes/no): ");
     char confirmation[4];
@@ -120,6 +133,9 @@ void exileKnight(Knight *root, char *name)
         return;
     }
 
+    // pangitaon dayun parent ato nga knight
+    // if makita sa left, i NULL ang leftSub sa parent
+    // otherwise, ang right sub
     Knight *parent = findParent(root, knightToExile);
     if (parent != NULL) {
         if (parent->leftSub == knightToExile) {
@@ -129,22 +145,23 @@ void exileKnight(Knight *root, char *name)
         }
     }
 
+    // tas free
     freeKnight(knightToExile);
-    printf(ITALIC_ON"\nKnight %s and all its subordinates have been exiled."OFF, name);
+    printf(ITALIC_ON"\nKnight %s and all its subordinates have been exiled. \nTaking with them their %d gold pieces."OFF, name, computeTotalGold(knightToExile));
 
     saveKingdom();
 }
 
 void demolishKingdom() {
-    FILE *file = fopen("KINGDOM.txt", "w");
+    FILE *file = fopen("KINGDOM.txt", "w"); // open file in write mode
     if (file == NULL) {
         printf(RED"\n\n===\nFailed to erase the kingdom's history from the scrolls."RESET);
         return;
     }
     fclose(file);
 
-    freeKnight(kingdomRoot);
-    kingdomRoot = NULL;
+    freeKnight(kingdomRoot); // tas i free and root
+    kingdomRoot = NULL; // tas i NULL, mana
 
     displayBanner();
     printf("\n\n"ITALIC_ON);

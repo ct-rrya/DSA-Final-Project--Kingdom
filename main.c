@@ -24,7 +24,8 @@ int main()
 
 
 
-    kingdomRoot = createNew(kingName, "Knight");
+    //kingdomRoot = createNew(kingName, "Knight");
+    kingdomRoot = createNew(kingName, "King");
     kingdomRoot->gold = 100;
     kingdomRoot->exp = 1000;  
 
