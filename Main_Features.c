@@ -310,6 +310,7 @@ void displaySubordinates(Knight *sub)
     }
 }
 
+/*
 void displayKingdom(Knight *target, int level) 
 {
     //Uses pre-order traversal: Current → Left → Right.
@@ -329,4 +330,31 @@ void displayKingdom(Knight *target, int level)
     displayKingdom(target->rightSub, level + 1);
 
     // para estitik ang pagka display, na siya hierarchical visualization
+}
+*/
+
+void displayKingdom(Knight *target, int level) 
+{
+    // Uses pre-order traversal: Current → Left → Right.
+    if (target == NULL) return;
+
+    // Print the details of the current knight with appropriate indentation.
+    // indentation
+    for (int i = 0; i < level; i++) {
+        printf("   ");
+    }
+
+    // Check if the current knight is the king (root) and label as "King"
+    if (target == kingdomRoot) {
+        printf("King %s (%d gold, %d exp, %s)\n", target->name, target->gold, target->exp, target->role);
+    } else {
+        // Otherwise, print it as a regular knight
+        printf("%s (%d gold, %d exp, %s)\n", target->name, target->gold, target->exp, target->role);
+    }
+
+    // Recursively display left and right subordinates
+    displayKingdom(target->leftSub, level + 1);
+    displayKingdom(target->rightSub, level + 1);
+
+    // This creates a hierarchical visualization of the kingdom
 }

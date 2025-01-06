@@ -26,6 +26,7 @@ int main()
 
     //kingdomRoot = createNew(kingName, "Knight");
     kingdomRoot = createNew(kingName, "King");
+    strcpy(kingdomRoot->role, "King");
     kingdomRoot->gold = 100;
     kingdomRoot->exp = 1000;  
 
