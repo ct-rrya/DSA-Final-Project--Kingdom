@@ -356,5 +356,5 @@ void displayKingdom(Knight *target, int level)
     displayKingdom(target->leftSub, level + 1);
     displayKingdom(target->rightSub, level + 1);
 
-    // This creates a hierarchical visualization of the kingdom
+    // para estitik ang pagka display, na siya hierarchical visualization
 }

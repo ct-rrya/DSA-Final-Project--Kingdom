@@ -90,6 +90,11 @@ void updateKnightRole(Knight *knight) { // to promote  aknight aheheh
         strcpy(knight->role, "Veteran Knight");
     }
     */
+
+    if (strcmp(knight->role, "King") == 0) {
+        return;  // Don't promote the king
+    }
+
     if (knight->exp >= ELITE_EXP_THRESHOLD) {
         strcpy(knight->role, "Elite Knight");
     } else if (knight->exp >= VETERAN_EXP_THRESHOLD) {
