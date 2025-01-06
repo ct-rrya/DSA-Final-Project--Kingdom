@@ -80,20 +80,9 @@ void freeKnight(Knight *knight) { // tp free alocated memory, to avoid memory le
     free(knight);
 }
 
-void updateKnightRole(Knight *knight) { // to promote  aknight aheheh
-    /*
-    if (knight->exp >= KING_EXP_THRESHOLD) {
-        strcpy(knight->role, "King");
-    } else if (knight->exp >= ELITE_EXP_THRESHOLD) {
-        strcpy(knight->role, "Elite Knight");
-    } else if (knight->exp >= VETERAN_EXP_THRESHOLD) {
-        strcpy(knight->role, "Veteran Knight");
-    }
-    */
-
-    if (strcmp(knight->name, kingdomRoot->name) == 0) {
-        return;  // Don't promote the king
-    }
+void updateKnightRole(Knight *knight) {
+    
+    if (strcmp(knight->role, "King") == 0) return;
 
     if (knight->exp >= ELITE_EXP_THRESHOLD) {
         strcpy(knight->role, "Elite Knight");

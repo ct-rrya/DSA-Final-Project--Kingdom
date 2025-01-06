@@ -22,14 +22,8 @@ int main()
     scanf("%s", kingName);
     getchar();
 
-
-
-    //kingdomRoot = createNew(kingName, "Knight");
     kingdomRoot = createNew(kingName, "King");
-    strcpy(kingdomRoot->role, "King");
-    kingdomRoot->gold = 100;
-    kingdomRoot->exp = 5000;  
-
+    kingdomRoot->gold = 100; 
 
     printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
     printf("\nAll hail the Sir %s, the ruler of Eldoria!", kingName);
