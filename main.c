@@ -132,7 +132,6 @@ int main()
                 printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
                 printf("\nPress Enter to continue...");
                 getchar();
-                sleep(2);
                 break;
             }
             case 5: {
