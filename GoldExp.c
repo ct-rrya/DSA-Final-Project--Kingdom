@@ -46,6 +46,7 @@ void convertExpToGold(Knight *knight) {
         return;
     }
 
+    // if false ang ibabaw, padayon ari
     // tas ngayo na sha s aamount i convert, minimunm of 500 ra gyud bawal 0-499
     printf("\nHow much experience would you like to convert to gold?");
     printf("\nEnter amount (minimum of 500 exp): ");
@@ -57,8 +58,8 @@ void convertExpToGold(Knight *knight) {
 
     // check if katong gi input kay number
     int i = 0;
-    while (input[i] != '\0' && input[i] != '\n') {
-        if (input[i] < '0' || input[i] > '9') {
+    while (input[i] != '\0' && input[i] != '\n') { 
+        if (input[i] < '0' || input[i] > '9') { // if either condition is true, then dili na siya digit
             printf(RED"\nAmount must be a numeric value!"RESET);
             printf("\n\nPress Enter to continue...");
             getchar();
@@ -67,7 +68,7 @@ void convertExpToGold(Knight *knight) {
         i++;
     }
 
-    // tas if valid na gani tong gi input, numer sha, i convert na balik to integer
+    // tas if false gani tong ibabaw gi input, numer sha, i convert na balik to integer
     sscanf(input, "%d", &expToConvert);
 
     // if inig modulo niya kay dili sha zero
@@ -78,6 +79,7 @@ void convertExpToGold(Knight *knight) {
         return;
     }
 
+    // if false ibabaw padayun ari
     // check and exp to convert is greater sa iyang exp, if yes kay tala sad
     if (expToConvert > knight->exp) {
         printf(RED"\nInsufficient experience points for this conversion."RESET);
@@ -87,7 +89,7 @@ void convertExpToGold(Knight *knight) {
     }
 
     // conversion na
-    int goldGained = (expToConvert / 500) * 100;
+    int goldGained = (expToConvert / MIN_CONVERSION_EXP) * 100;
 
     // tas ofc bawasan iya exp
     knight->exp -= expToConvert;

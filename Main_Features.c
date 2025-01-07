@@ -114,7 +114,7 @@ void exileKnight(Knight *root, char *name)
         return;
     }
 
-    // pangitaon nag name nga gitype, if walla haynaq
+    // pangitaon nag name nga gitype, if walla hayna
     Knight *knightToExile = findMember(root, name);
     if (knightToExile == NULL) {
         printf(RED"No knight with the name %s found in the kingdom.\n"RESET, name);

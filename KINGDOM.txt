@@ -1,0 +1,3 @@
+a 200 5000 King
+   b 100 2500 Veteran Knight
+   c 0 1000 Knight
