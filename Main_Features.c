@@ -1,6 +1,7 @@
 #include "Kingdom.h"
 
-void saveKingdom() { // saving the current state of the kingdom padung sa text file
+void saveKingdom() 
+{ // saving the current state of the kingdom padung sa text file
     FILE *file = fopen("KINGDOM.txt", "w"); // open ang file thru write mode (w)
     if (file == NULL) { // kung mag file awww
         printf(RED"\n\n===\nFailed to record the kingdom's history in the scrolls."RESET);
@@ -62,7 +63,7 @@ void recruit(Knight *leader, char *recName, char *recRole)
         printf("The hall falls silent as the warrior kneels, ledging their blade and loyalty to the realm.");
         leader->leftSub = newKnight; // assign as left knight
         leader->gold -= RECRUITMENT_COST; // minusan ang gold saleader
-        leader->gold += 100; // tas addan nasad 100 ang leader HAHAHAHHAH, di magbuot sa developer
+        leader->gold += 200; //UPDATED GOLD BONUS FOR RECRUITMENT FOR GOLD MECHA. IMPROVEMENT
         updateKnightRole(leader); // tas update ang role niya
         sprintf(story, BOLD_ON BLUE "\n\n\tWith a solemn nod, %s proclaims, 'By royal decree, I name thee, %s, my sworn \nleft knight. Rise and serve with honor!'\n" OFF RESET, leader->name, recName);
         saveKingdom();
@@ -74,12 +75,12 @@ void recruit(Knight *leader, char *recName, char *recRole)
         printf("The gathered courtiers hold their breath\nas the warrior kneels, swearing their unwavering allegiance to the crown.");
         leader->rightSub = newKnight; // a right knight
         leader->gold -= RECRUITMENT_COST;
-        leader->gold += 200; // bonus 100 for recruiting 2 knights
+        leader->gold += 300; // bonus 100 for recruiting 2 knights // RETAINED 100 BONUS GOLD
         updateKnightRole(leader);
         sprintf(story, BOLD_ON BLUE "\n\n\tRaising a hand in declaration, %s proclaims, 'By royal decree, I name thee, %s, \nmy sworn right knight. Bear the crest of this kingdom with pride and valor!'\n" OFF RESET, leader->name, recName);
         saveKingdom();
     } 
-    else // kung parehong occupied... awts
+    else // kung parehong occupied
     {
     printf(RED "\n\tAlas! The ranks beneath this noble leader are already brimming with steadfast \nand loyal knights, each sworn to their sacred duty." RESET);
     free(newKnight);
@@ -152,7 +153,8 @@ void exileKnight(Knight *root, char *name)
     saveKingdom();
 }
 
-void demolishKingdom() {
+void demolishKingdom() 
+{
     FILE *file = fopen("KINGDOM.txt", "w"); // open file in write mode
     if (file == NULL) {
         printf(RED"\n\n===\nFailed to erase the kingdom's history from the scrolls."RESET);
@@ -175,7 +177,8 @@ void demolishKingdom() {
     getchar();
 }
 
-void displayHelp() {
+void displayHelp() 
+{
     printf(GREEN"================================ PROGRAM GUIDE ================================\n\n");
     printf(ITALIC_ON"\t\t\tWelcome to the Kingdom System Guide!\n"OFF);
     printf(BOLD_ON"\nFeatures and System Explanation\n\n"OFF);
@@ -210,7 +213,7 @@ void displayHelp() {
     printf("\n====================================================================================\n"RESET);
 
     printf(GREEN"============================ EXPERIENCE AND GOLD SYSTEM ============================\n\n"RESET);
-    printf(ITALIC_ON"\t\t\tExperience System\n"OFF);
+    printf(ITALIC_ON"\t\t\tExperience System\n\n"OFF);
 
     printf(GREEN"1. Every knight in the kingdom has an experience attribute (exp), which measures\n   their progress and achievements.\n");
     printf("2. Knights gain experience through recruitment actions. Specifically, when a knight\n   recruits another knight, they gain 1000 experience points.\n");
@@ -233,8 +236,8 @@ void displayHelp() {
 
     printf(GREEN"   1. Recruiting a new knight requires paying a recruitment fee of 100 gold.\n");
     printf("   2. If a leader successfully recruits a knight, they gain an additional gold bonus:\n");
-    printf("      - Recruiting the first knight (left knight) gives an extra 100 gold.\n");
-    printf("      - Recruiting the second knight (right knight) gives an extra 200 gold.\n");
+    printf("      - Recruiting the first knight (left knight) gives 200 gold.\n");
+    printf("      - Recruiting the second knight (right knight) gives 200 gold \n      and an extra 100 gold, total of 300 gold pieces.\n");
 
     printf(BOLD_ON"\nConverting Experience to Gold:\n"OFF);
 
@@ -249,13 +252,12 @@ void displayHelp() {
     printf("   1. A leader with enough gold (at least 100) recruits a new knight.\n");
     printf("   2. The leader pays 100 gold for the recruitment.\n");
     printf("   3. The leader gains 1000 EXP for each new knight they recruit.\n");
-    printf("   4. The leader also receives a gold bonus (100 for the first knight, 200 for the second\n      knight).\n");
+    printf("   4. The leader also receives a gold bonus (200 for the first knight, 300 for the second\n      knight).\n");
 
     printf(GREEN"\nPromotion:\n");
     printf("   1. As knights accumulate experience, their roles can be updated.\n");
     printf("   2. A knight with 2000+ EXP becomes a Veteran Knight.\n");
     printf("   3. A knight with 3000+ EXP becomes an Elite Knight.\n");
-    printf("   4. A knight with 5000+ EXP becomes a King.\n");
 
     printf(GREEN"\nExperience to Gold Conversion:\n");
     printf("   1. Knights with excess experience can convert their experience to gold.\n");
@@ -265,12 +267,12 @@ void displayHelp() {
     printf("\n====================================================================================\n"RESET);
     printf(BLUE"================================ PROJECT CONTRIBUTORS ================================\n\n");
     printf("GROUP: 4\nPROGRAM & SECTION: BSIT 2A\n\n");
-    printf("\t\t\tCabardo, Carmela\n");
+    printf(ITALIC_ON"\t\t\tCabardo, Carmela\n");
     printf("\t\t\tConde, Jhemarsh Lee\n");
     printf("\t\t\tCongson, Jovannie\n");
     printf("\t\t\tDela Pieza, Frances Mae\n");
     printf("\t\t\tEdano, Merry Apple\n");
-    printf("\t\t\tIsmael, Vince Alger\n");
+    printf("\t\t\tIsmael, Vince Alger\n"RESET);
     printf("\n====================================================================================\n"RESET);
 }
 
