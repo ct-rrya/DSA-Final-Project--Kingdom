@@ -127,6 +127,7 @@ int main()
                 getchar();
                 printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
                 exileKnight(kingdomRoot, memberName);
+                Sleep(3);
                 printf(GOLD"\n\n+------------------------------------------------------------------------------------------+\n\n"RESET);
                 printf("\nPress Enter to continue...");
                 getchar();

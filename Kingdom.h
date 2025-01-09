@@ -17,7 +17,6 @@
 #define RECRUITMENT_COST 100           // Gold needed ot be able to recruit a knight
 #define VETERAN_EXP_THRESHOLD 2000    // Experience needed to become a Veteran Knight
 #define ELITE_EXP_THRESHOLD 3000     // Experience needed to become an Elite Knight
-//#define KING_EXP_THRESHOLD 5000     // Experience needed to become a King
 #define MIN_CONVERSION_EXP 500     // Minimum exp that can be converted
 
 #define RESET "\x1b[0m"

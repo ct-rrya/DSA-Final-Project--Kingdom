@@ -33,7 +33,7 @@ void recruit(Knight *leader, char *recName, char *recRole)
         return;
     }
 
-    // check if ang gold sa leader kay enought o recruit hahahaha
+    // check if ang gold sa leader kay enought to recruit hahahaha
     if (leader->gold < RECRUITMENT_COST) {
         printf(RED"\n\n===\nMy liege, I am afraid your treasury is not enough to earn a brave soul."RESET);
         sleep(2);
@@ -92,7 +92,6 @@ void recruit(Knight *leader, char *recName, char *recRole)
     Knight *current = leader;
     while (current != NULL) {
         current->exp += 1000;
-        //current->gold += 100;
         updateKnightRole(current);
         current = findParent(kingdomRoot, current);
         saveKingdom();
