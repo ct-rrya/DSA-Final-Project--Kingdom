@@ -1,9 +1,3 @@
-# Ignore compiled files
-*.exe
-*.out
-*.o
-*.a
-
 # Ignore logs
 *.log
 
