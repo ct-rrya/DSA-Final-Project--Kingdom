@@ -1,2 +1,3 @@
-Alger 100 2000 King
-   A 0 1000 Knight
+A 400 3000 King
+   B 0 1000 Knight
+   C 0 1000 Knight
