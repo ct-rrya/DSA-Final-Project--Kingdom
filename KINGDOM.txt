@@ -1,3 +1,0 @@
-A 400 3000 King
-   B 0 1000 Knight
-   C 0 1000 Knight
